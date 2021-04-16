@@ -35,7 +35,7 @@ import java.util.List;
 @Table(name = "Groups")
 public class Group {
     @Id
-    private final String id;
+    private final long id;
     @NotNull
     private final String name;
     private final String icon;

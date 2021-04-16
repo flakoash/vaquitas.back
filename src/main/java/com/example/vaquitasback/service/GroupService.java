@@ -17,7 +17,7 @@ public class GroupService implements GroupServiceInterface{
     private GroupRepository repository;
 
     @Override
-    public Iterable<Group> getAll(String userId) {
+    public Iterable<Group> getAll(long userId) {
         Iterable<Group> allData = this.repository.findAll();
         allData = StreamSupport.stream(allData.spliterator(),false).map(data -> {
             data.setBalance(repository.getGroupBalanceById(data.getId(), userId));
@@ -34,7 +34,7 @@ public class GroupService implements GroupServiceInterface{
     }
 
     @Override
-    public Group settleUp(String groupId) {
+    public Group settleUp(long groupId) {
         return null;
     }
 }

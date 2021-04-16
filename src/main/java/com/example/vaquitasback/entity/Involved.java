@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Entity
 public class Involved {
     @Id
-    private final String id;
+    private final long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -22,9 +22,21 @@ public class Involved {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transaction_id", referencedColumnName = "id")
-    private final Transaction transaction;
+    private Transaction transaction;
 
     private final BigDecimal amount;
 
     private final long createdAt;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Involved )) return false;
+        return id != 0 && id==((Involved) o).getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
