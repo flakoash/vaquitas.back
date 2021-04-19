@@ -1,5 +1,6 @@
 package com.example.vaquitasback.entity;
 
+import com.example.vaquitasback.validator.InvolvedSumUp;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -21,6 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor                                         // we still need an Args constructor
 @Entity
 @Table(name = "TRANSACTIONS")
+@InvolvedSumUp
 public class Transaction {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -4,6 +4,7 @@ import com.example.vaquitasback.entity.Transaction;
 import com.example.vaquitasback.service.TransactionServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +20,7 @@ public class TransactionController {
         return this.transactionService.getTransactions(groupId);
     }
     @PostMapping
-    public Transaction addTransaction(@RequestBody Transaction transaction){
+    public Transaction addTransaction(@Validated @RequestBody Transaction transaction){
         return this.transactionService.addTransaction(transaction);
     }
 
