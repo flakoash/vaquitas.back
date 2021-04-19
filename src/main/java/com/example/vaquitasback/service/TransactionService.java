@@ -21,7 +21,7 @@ public class TransactionService implements TransactionServiceInterface {
 
     @Override
     public Iterable<Transaction> getTransactions(long groupId) {
-        return repository.getTransactionsByGroup_id(groupId);
+        return repository.getTransactionsByGroup_idOrderByCreatedAtDesc(groupId);
     }
 
     @Override
