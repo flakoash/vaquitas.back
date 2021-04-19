@@ -1,12 +1,9 @@
 package com.example.vaquitasback.service;
 
-import com.example.vaquitasback.entity.Involved;
 import com.example.vaquitasback.entity.Transaction;
 import com.example.vaquitasback.repository.TransactionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class TransactionService implements TransactionServiceInterface {

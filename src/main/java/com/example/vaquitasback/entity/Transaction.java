@@ -1,7 +1,6 @@
 package com.example.vaquitasback.entity;
 
 import com.example.vaquitasback.validator.InvolvedSumUp;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-//@JsonIgnoreProperties(value = { "groupEnt", "involved" })            // we dont need to send groups through API requests
 @NoArgsConstructor(access= AccessLevel.PROTECTED, force = true)  // JPA requires a non args constructor
 @RequiredArgsConstructor                                         // we still need an Args constructor
 @Entity

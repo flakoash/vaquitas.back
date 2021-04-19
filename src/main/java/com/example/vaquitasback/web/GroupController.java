@@ -20,9 +20,6 @@ public class GroupController {
     @GetMapping
     public Iterable<Group> listAll(long userId) {
 
-//        Group gr[] = {new Group("1", "asd", "asd", Arrays.asList(new User("user_1", "user 1")), new Balance("asd", new BigDecimal(10), new User("user_1", "user 1"), new Date())),
-//                new Group("2", "asd", "asd", Arrays.asList(new User("user_1", "user 1")), new Balance("asd", new BigDecimal(10), new User("user_1", "user 1"), new Date())),
-//                new Group("3", "asd", "asd", Arrays.asList(new User("user_1", "user 1")), new Balance("asd", new BigDecimal(10), new User("user_1", "user 1"), new Date()))};
         Iterable<Group> gr = groupService.getAll(userId);
         return gr;
     }
