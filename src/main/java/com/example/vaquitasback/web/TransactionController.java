@@ -2,10 +2,9 @@ package com.example.vaquitasback.web;
 
 import com.example.vaquitasback.entity.Transaction;
 import com.example.vaquitasback.service.TransactionServiceInterface;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/transaction")
@@ -20,7 +19,7 @@ public class TransactionController {
         return this.transactionService.getTransactions(groupId);
     }
     @PostMapping
-    public Transaction addTransaction(Transaction transaction){
+    public Transaction addTransaction(@RequestBody Transaction transaction){
         return this.transactionService.addTransaction(transaction);
     }
 
