@@ -6,5 +6,5 @@ import org.springframework.data.rest.core.annotation.RestResource;
 
 @RestResource(exported = false)
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
-    Iterable<Transaction> getTransactionsByGroup_id(long groupId);
+    Iterable<Transaction> getTransactionsByGroup_idOrderByCreatedAtDesc(long groupId);
 }
