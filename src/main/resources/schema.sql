@@ -1,5 +1,5 @@
 create table Groups (
-    id BIGINT(19) primary key,
+    id BIGINT(19) AUTO_INCREMENT primary key,
     name varchar(50) not null,
     icon varchar(200) not null,
     last_Settle_Up BIGINT(19) not null,
@@ -7,7 +7,7 @@ create table Groups (
 );
 
 create table User (
-    id BIGINT(19) primary key,
+    id BIGINT(19) AUTO_INCREMENT primary key,
     name varchar(50) not null,
     username varchar(50) not null,
     password varchar(25) not null,
@@ -26,7 +26,7 @@ alter table User_Groups
 
 
 create table Transactions (
-    id BIGINT(19) primary key,
+    id BIGINT(19) AUTO_INCREMENT primary key,
     title varchar (150) not null,
     description varchar (300) null,
     amount DECIMAL(19,2) not null,
@@ -40,7 +40,7 @@ alter table Transactions
     add foreign key (group_id) references Groups(id);
 
 create table Involved (
-    id BIGINT(19) primary key,
+    id BIGINT(19) AUTO_INCREMENT primary key,
     user_id BIGINT(19) not null,
     transaction_id BIGINT(19) not null,
     amount DECIMAL(19,2) not null,
