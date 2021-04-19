@@ -35,8 +35,9 @@ import java.util.List;
 @Table(name = "Groups")
 public class Group {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private final long id;
-    @NotNull
+//    @NotNull
     private final String name;
     private final String icon;
 
