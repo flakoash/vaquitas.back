@@ -2,9 +2,8 @@ package com.example.vaquitasback.web;
 
 import com.example.vaquitasback.entity.Group;
 import com.example.vaquitasback.service.GroupServiceInterface;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -22,5 +21,10 @@ public class GroupController {
 
         Iterable<Group> gr = groupService.getAll(userId);
         return gr;
+    }
+
+    @PostMapping
+    public Group addGroup(@Validated @RequestBody Group group) {
+        return groupService.add(group);
     }
 }

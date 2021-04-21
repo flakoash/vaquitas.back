@@ -21,7 +21,6 @@ public class InvolvedValidator implements ConstraintValidator<InvolvedSumUp, Tra
         for(Involved involved : transaction.getInvolved()){
             sum = sum.add(involved.getAmount());
         }
-        logger.warn("sum: "+sum + " val: "+transaction.getAmount());
         return sum.equals(transaction.getAmount().add(new BigDecimal("0.0")));
     }
 }

@@ -37,7 +37,7 @@ public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private final long id;
-//    @NotNull
+    @NotNull
     private final String name;
     private final String icon;
 
@@ -47,6 +47,7 @@ public class Group {
             joinColumns = @JoinColumn(name = "group_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     @Size(min = 1, message = "You must have at least one user in the group")
+    @NotNull
     private final List<User> members;
 
     private long createdAt;

@@ -1,12 +1,10 @@
 package com.example.vaquitasback.service;
 
-import com.example.vaquitasback.entity.Balance;
 import com.example.vaquitasback.entity.Group;
 import com.example.vaquitasback.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -34,7 +32,7 @@ public class GroupService implements GroupServiceInterface{
 
     @Override
     public Group add(Group group) {
-        return null;
+        return repository.save(group);
     }
 
     @Override
