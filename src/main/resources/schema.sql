@@ -10,9 +10,9 @@ create table User (
     id BIGINT(19) AUTO_INCREMENT primary key,
     name varchar(50) not null,
     username varchar(50) not null,
-    password varchar(25) not null,
+    password varchar(60) not null,
     phone_Number varchar(25) not null,
-    photo varchar(200) not null
+    photo varchar(200)
 );
 
 create table User_Groups (

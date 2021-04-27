@@ -3,10 +3,12 @@ package com.example.vaquitasback.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,9 +28,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private final long id;
     private final String name; // display name
+    @NotNull
     private final String username;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private final String password;
+    @NotNull
+    private String password;
+    @NotNull
     private final String phoneNumber;
     private final String photo;
 }
