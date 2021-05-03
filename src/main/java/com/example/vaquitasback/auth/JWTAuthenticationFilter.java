@@ -3,11 +3,8 @@ package com.example.vaquitasback.auth;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.vaquitasback.entity.User;
-import com.example.vaquitasback.web.UserController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,7 +21,6 @@ import java.util.Date;
 
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-    Logger logger = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
 
     private AuthenticationManager authenticationManager;
 
@@ -38,10 +34,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                                 HttpServletResponse res) throws AuthenticationException {
 
         try {
-            logger.warn(req.getInputStream().toString());
             User creds = new ObjectMapper()
                     .readValue(req.getInputStream(), User.class);
-            logger.warn(creds.getName());
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             creds.getUsername(),
