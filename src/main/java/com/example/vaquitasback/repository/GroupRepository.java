@@ -15,4 +15,6 @@ public interface GroupRepository extends CrudRepository<Group, Long> {
 
     @Query(value = "SELECT coalesce(t.created_At, 0.00) FROM Transactions t WHERE t.group_id = :groupId ORDER BY t.created_At DESC LIMIT 1", nativeQuery = true)
     Long getLastTransactionDate(@Param("groupId") long groupId);
+
+    Iterable<Group> getAllByMembers_idIsIn(Iterable<Long> userId);
 }

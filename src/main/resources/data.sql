@@ -2,7 +2,7 @@ delete from Groups ;
 delete from User;
 delete from User_Groups;
 
-insert into user (id, name, username, password, phone_number, photo) values (1, 'Vanya', 'vboundey0', 'iPtrGIxmpq', '995-315-1869', 'https://robohash.org/sapienteinventoreeum.png?size=50x50&set=set1');
+insert into user (id, name, username, password, phone_number, photo) values (1, 'Vanya', 'testUser', '$2a$10$cYdCkFTDXYpspC7VfxrVGuXkYfDLX046pbW88w0GR5EwJVDSwX/1K', '995-315-1869', 'https://robohash.org/sapienteinventoreeum.png?size=50x50&set=set1');
 insert into user (id, name, username, password, phone_number, photo) values (2, 'Towney', 'targente1', 'VfuYLh', '319-958-6659', 'https://robohash.org/dolorsuscipitaperiam.png?size=50x50&set=set1');
 insert into user (id, name, username, password, phone_number, photo) values (3, 'Morton', 'mchevis2', 'go1jd1K', '142-364-8028', 'https://robohash.org/exercitationemautemeveniet.png?size=50x50&set=set1');
 insert into user (id, name, username, password, phone_number, photo) values (4, 'Aili', 'acoalburn3', 'puTQo1ufA', '921-516-8411', 'https://robohash.org/velitdoloremharum.png?size=50x50&set=set1');
