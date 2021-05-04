@@ -1,12 +1,14 @@
 package com.example.vaquitasback.repository;
 
 import com.example.vaquitasback.entity.Group;
+import com.example.vaquitasback.entity.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestResource(exported = false)
 public interface GroupRepository extends CrudRepository<Group, Long> {
@@ -17,4 +19,7 @@ public interface GroupRepository extends CrudRepository<Group, Long> {
     Long getLastTransactionDate(@Param("groupId") long groupId);
 
     Iterable<Group> getAllByMembers_idIsIn(Iterable<Long> userId);
+
+    @Query(value = "SELECT g.members FROM Group g WHERE g.id = :groupId")
+    List<User> getMembersById(@Param("groupId") Long groupId);
 }
