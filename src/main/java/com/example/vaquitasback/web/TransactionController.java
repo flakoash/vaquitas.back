@@ -29,7 +29,7 @@ public class TransactionController {
         return this.transactionService.getTransactions(groupId);
     }
     @PostMapping
-    public Transaction addTransaction(@Validated @RequestBody Transaction transaction){
+    public Transaction addTransaction( @RequestBody Transaction transaction){
         return this.transactionService.addTransaction(transaction);
     }
 

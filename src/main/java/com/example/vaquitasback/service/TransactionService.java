@@ -3,9 +3,13 @@ package com.example.vaquitasback.service;
 import com.example.vaquitasback.entity.Transaction;
 import com.example.vaquitasback.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.Valid;
 
 
 @Service
+@Validated
 public class TransactionService implements TransactionServiceInterface {
 
     private final TransactionRepository repository;
@@ -22,7 +26,7 @@ public class TransactionService implements TransactionServiceInterface {
     }
 
     @Override
-    public Transaction addTransaction(Transaction transaction) {
+    public Transaction addTransaction(@Valid Transaction transaction) {
         return repository.save(transaction);
     }
 }
