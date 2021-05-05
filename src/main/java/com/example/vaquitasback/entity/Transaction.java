@@ -1,6 +1,7 @@
 package com.example.vaquitasback.entity;
 
 import com.example.vaquitasback.validator.InvolvedSumUp;
+import com.example.vaquitasback.validator.JustMembers;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -21,6 +22,7 @@ import java.util.List;
 @Entity
 @Table(name = "TRANSACTIONS")
 @InvolvedSumUp
+@JustMembers
 public class Transaction {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

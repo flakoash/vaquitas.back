@@ -29,16 +29,8 @@ public class TransactionController {
         return this.transactionService.getTransactions(groupId);
     }
     @PostMapping
-    public Transaction addTransaction(@Validated @RequestBody Transaction transaction, Principal principal){
-//        User owner = transaction.getOwner();
-        User owner = userService.findByUsername(principal.getName());
-        List<User> members = groupService.getMembers(transaction.getGroup().getId());
-        boolean inGroup = members.stream().anyMatch(member -> member.getId() == owner.getId());
-        if (inGroup)
-            return this.transactionService.addTransaction(transaction);
-        else{
-            throw new ForbiddenException();
-        }
+    public Transaction addTransaction(@Validated @RequestBody Transaction transaction){
+        return this.transactionService.addTransaction(transaction);
     }
 
 }
