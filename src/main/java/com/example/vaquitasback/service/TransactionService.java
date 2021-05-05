@@ -13,11 +13,9 @@ import javax.validation.Valid;
 public class TransactionService implements TransactionServiceInterface {
 
     private final TransactionRepository repository;
-    private final InvolvedService involvedService;
 
-    public TransactionService(TransactionRepository repository, InvolvedService involvedService){
+    public TransactionService(TransactionRepository repository){
         this.repository = repository;
-        this.involvedService = involvedService;
     }
 
     @Override
