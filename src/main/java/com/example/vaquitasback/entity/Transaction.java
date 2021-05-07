@@ -54,6 +54,7 @@ public class Transaction {
     )
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Size(min = 1, message = "You should have at least one involved per transaction")
+    @NotNull
     private List<Involved> involved = new ArrayList<>();
 
     private long createdAt;
