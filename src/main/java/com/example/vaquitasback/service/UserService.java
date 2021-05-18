@@ -26,4 +26,8 @@ public class UserService implements UserServiceInterface{
                 .replace("+", "")).collect(Collectors.toList());
         return repository.findAllByPhoneNumberIn(cleanedPhones);
     }
+    @Override
+    public Iterable<User> getAll(){
+        return this.repository.findAll();
+    }
 }

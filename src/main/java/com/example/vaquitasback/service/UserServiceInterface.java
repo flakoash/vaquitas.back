@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface UserServiceInterface {
     Iterable<User> findByPhone(List<String> phones);
+    Iterable<User> getAll();
 }

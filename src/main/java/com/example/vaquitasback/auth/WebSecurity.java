@@ -1,5 +1,6 @@
 package com.example.vaquitasback.auth;
 
+import com.example.vaquitasback.repository.UserRepository;
 import com.example.vaquitasback.service.ApplicationUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -18,10 +19,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     private ApplicationUserDetailsService userDetailsService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private UserRepository userRepository;
 
-    public WebSecurity(ApplicationUserDetailsService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public WebSecurity(ApplicationUserDetailsService userService, BCryptPasswordEncoder bCryptPasswordEncoder, UserRepository userRepository) {
         this.userDetailsService = userService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -29,10 +32,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable().cors().and().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
                 .antMatchers(HttpMethod.GET, "/api/user/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/user").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+                .addFilter(new JWTAuthenticationFilter(authenticationManager(), userRepository))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 // this disables session creation on Spring Security
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
