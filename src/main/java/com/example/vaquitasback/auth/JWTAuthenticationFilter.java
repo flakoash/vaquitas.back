@@ -7,6 +7,8 @@ import com.example.vaquitasback.repository.UserRepository;
 import com.example.vaquitasback.service.ApplicationUserDetailsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,6 +29,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private AuthenticationManager authenticationManager;
     private UserRepository userRepository;
+    Logger logger = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager, UserRepository userRepository) {
         this.authenticationManager = authenticationManager;
@@ -41,6 +44,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         try {
             User creds = new ObjectMapper()
                     .readValue(req.getInputStream(), User.class);
+            logger.debug(creds.toString());
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             creds.getUsername(),
@@ -63,6 +67,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SecurityConstants.SECRET.getBytes()));
 
+        logger.debug("token: " + token);
         JSONObject responseObject =  new JSONObject();
         String uname = ((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername();
         Long userId = userRepository.findByUsername(uname).getId();
