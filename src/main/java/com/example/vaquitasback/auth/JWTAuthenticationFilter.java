@@ -15,7 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+//import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
@@ -68,17 +68,24 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .sign(Algorithm.HMAC512(SecurityConstants.SECRET.getBytes()));
 
         logger.debug("token: " + token);
-        JSONObject responseObject =  new JSONObject();
         String uname = ((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername();
         Long userId = userRepository.findByUsername(uname).getId();
-        responseObject.put("id", userId);
-        responseObject.put("username", uname);
-        responseObject.put("token", token);
+
+//        JSONObject responseObject =  new JSONObject();
+//        responseObject.put("id", userId);
+//        responseObject.put("username", uname);
+//        responseObject.put("token", token);
+
+        String resJson = "{\n" +
+                "  \"id\": " + userId + ",\n" +
+                "  \"username\": \"" + uname + "\",\n" +
+                "  \"token\": \"" + token + "\"\n" +
+                "}";
 
 
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
-        res.getWriter().write(responseObject.toString());
+        res.getWriter().write(resJson);
         res.getWriter().flush();
     }
 }
