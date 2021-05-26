@@ -17,10 +17,10 @@ public class InvolvedValidator implements ConstraintValidator<InvolvedSumUp, Tra
 
     @Override
     public boolean isValid(Transaction transaction, ConstraintValidatorContext constraintValidatorContext) {
-        BigDecimal sum = new BigDecimal("0.0");
+        BigDecimal sum = new BigDecimal("0.00");
         for(Involved involved : transaction.getInvolved()){
             sum = sum.add(involved.getAmount());
         }
-        return sum.equals(transaction.getAmount().add(new BigDecimal("0.0")));
+        return sum.equals(transaction.getAmount().add(new BigDecimal("0.00")));
     }
 }
