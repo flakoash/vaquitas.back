@@ -28,10 +28,10 @@ public class UserController {
     }
 
     @PostMapping("/singup")
-    public void signUp(@RequestBody User user) {
+    public User signUp(@RequestBody User user) {
         logger.warn(user.getName());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        repository.save(user);
+        return repository.save(user);
     }
 
     @PostMapping("/findByPhone")
